@@ -5,17 +5,23 @@ import { useNavigate } from "react-router-dom";
 function CounterPage() {
   let navigate = useNavigate();
   const handleStatus = (res) => {
-    axios.post("http://localhost:5000/status", { number: res });
-  };
-
-  const handleTicket = (res) => {
-    axios.post("http://localhost:5000/ticket", { number: res }).then((res) => {
-      console.log(res.data != undefined);
+    axios.post("https://react-queue-server.herokuapp.com/status", {
+      number: res,
     });
   };
 
+  const handleTicket = (res) => {
+    axios
+      .post("https://react-queue-server.herokuapp.com/ticket", { number: res })
+      .then((res) => {
+        console.log(res.data != undefined);
+      });
+  };
+
   const handleFinish = (res) => {
-    axios.post("http://localhost:5000/finish", { number: res });
+    axios.post("https://react-queue-server.herokuapp.com/finish", {
+      number: res,
+    });
   };
 
   return (

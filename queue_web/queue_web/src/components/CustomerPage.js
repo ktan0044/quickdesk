@@ -12,22 +12,32 @@ function CustomerPage() {
   const [lastTicket, setLastTicket] = useState(-1);
 
   const takeNumber = () => {
-    axios.get("http://localhost:5000/take").then((response) => {
-      setWaitList(response.data.waitlist);
-      setLastTicket(response.data.waitlist[response.data.waitlist.length - 1]);
-    });
+    axios
+      .get("https://react-queue-server.herokuapp.com/take")
+      .then((response) => {
+        setWaitList(response.data.waitlist);
+        setLastTicket(
+          response.data.waitlist[response.data.waitlist.length - 1]
+        );
+      });
   };
 
   useEffect(() => {
-    axios.get("http://localhost:5000/waitList").then((response) => {
-      setWaitList(response.data.waitlist);
-    });
-    axios.get("http://localhost:5000/status").then((response) => {
-      setStatus(response.data.status);
-    });
-    axios.get("http://localhost:5000/ticket").then((response) => {
-      setTicket(response.data.ticket);
-    });
+    axios
+      .get("https://react-queue-server.herokuapp.com/waitList")
+      .then((response) => {
+        setWaitList(response.data.waitlist);
+      });
+    axios
+      .get("https://react-queue-server.herokuapp.com/status")
+      .then((response) => {
+        setStatus(response.data.status);
+      });
+    axios
+      .get("https://react-queue-server.herokuapp.com/ticket")
+      .then((response) => {
+        setTicket(response.data.ticket);
+      });
   }, []);
 
   if (status != undefined) {

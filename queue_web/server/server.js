@@ -6,6 +6,9 @@ const app = express();
 var cors = require("cors");
 app.use(cors());
 app.use("/", router);
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -59,6 +62,6 @@ app.post("/finish", (req, res) => {
   }
 });
 
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log("server started on port 5000");
 });
