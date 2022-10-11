@@ -1,9 +1,17 @@
 import "./customer.css";
 import { useState } from "react";
+import axios from "axios";
 
 function CustomerPage() {
   const [serve, setServe] = useState("No one");
 
+  axios.get("http://localhost:5000/api").then((response) => {
+    console.log(response);
+  });
+
+  axios.post("http://localhost:5000/api", { user: "tan" }).then((res) => {
+    console.log(res);
+  });
   return (
     <div class="out-box">
       <div class="upper-box">
